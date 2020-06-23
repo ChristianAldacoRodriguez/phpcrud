@@ -33,11 +33,12 @@ class CrudController{
 							'data' => array(),
 							'message' => "");
 		
-		foreach($compareArray as $field){
-			if(!in_array( $field, $post)){
+		foreach($compareArray as $field => $val){
+			
+			if(!array_key_exists($field, $post)){
 				$response['success'] = false;
 				$response['data'] = null;
-				$response['message'] = "$post not found!";
+				$response['message'] = "$field not found!";
 				break;
 			}else{
 				$response['data'][$field] = $post[$field];
