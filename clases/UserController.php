@@ -2,6 +2,7 @@
 
 include_once("CrudController.php");
 include_once("Response.php");
+include_once("CRUD.php");
 
 class UserController extends CrudController{
 
@@ -29,7 +30,12 @@ class UserController extends CrudController{
 			Response::PrintAndFinish($res, null, 500);
 		}
 		
-		echo "All fine";
+		$primary_key_value = CRUD::InsertRow($this->table_name, $filteredArray['data']);
+		$obj = CRUD::GetRow($this->table_name, $this->primary_key_name, $this->primary_key_value);
+		$res = Response::CreateSuccessTemplate($obj, 'Insert success');
+		
+		Response::PrintAndFinish($res, null, 201);
+		
 		
 	}
 	
