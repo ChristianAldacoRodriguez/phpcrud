@@ -24,6 +24,21 @@ class Response{
 		return $res;
 	}
 	
+	public static function PrintAndFinish($response, $headers = array('Content-type: application/json'), $responseCode = 200){
+		
+		if($headers != null){
+			foreach($headers as $header){
+				header($header);
+			}
+		}
+		
+
+		http_response_code($responseCode);
+		
+		echo json_encode($response);
+		die();
+	}
+	
 }
 
 ?>

@@ -10,22 +10,20 @@ class UserController extends CrudController{
 	
 	protected $table_name = "users";
 	protected $table_fields = array("email", "password", "name");
-	protected $create_fields = array("email" => "", "password" => "", "name" => "");
-	protected $update_fields = array("email" => "", "password" => "", "name" => "");
-	protected $delete_fields = array("email" => "", "password" => "", "name" => "");
+	protected $create_fields = array("email" => "non_empty|str", "password" => "non_empty|str", "name" => "non_empty|str");
+	protected $update_fields = array("email" => "non_empty|str", "password" => "non_empty|str", "name" => "non_empty|str");
+	protected $delete_fields = array("email" => "non_empty|str", "password" => "non_empty|str", "name" => "non_empty|str");
 	
 	
 	public function Create($data){
 		$filteredArray = $this->Filter($data, $this->create_fields);
 		
 		if(!$filteredArray['success']){
-			
 			$res = Response::CreateErrorTemplate(null);
-			
-			echo json_encode($res);
-			return;
+			Response::PrintAndFinish($res, null, 500);
 		}
 		
+		$isValid = $this->Validate($filteredArray['data'], $this->create_fields);
 		
 		
 	}
