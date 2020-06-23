@@ -23,8 +23,13 @@ class UserController extends CrudController{
 			Response::PrintAndFinish($res, null, 500);
 		}
 		
-		$isValid = $this->Validate($filteredArray['data'], $this->create_fields);
+		$invalidArray = $this->Validate($filteredArray['data'], $this->create_fields);
+		if( count($invalidArray) > 0){
+			$res = Response::CreateErrorTemplate(null);
+			Response::PrintAndFinish($res, null, 500);
+		}
 		
+		echo "All fine";
 		
 	}
 	

@@ -58,44 +58,54 @@ class CrudController{
 		//non_zero = Value cannot be 0
 		//non_negative = Value cannot be negative
 		
-		$responseArray = array();
+		$invalidArray = array();
 		
 		foreach($post as $field => $value){			
 			$validationFields = explode('|',$validationArray[$field]);
 			
-			$isValid = false;
-			$message = "There is something incorrect.";
+			
 			foreach($validationFields as $code){
+			
+				$isValid = false;
+				$message = "There is something incorrect.";
 			
 				switch($code){
 					
 					case 'non_empty':
 						
 						$isValid = !empty($value);
+						$message = "Value is empty!";
 						
 					break;
 					case 'str':
 					
 						$isValid = is_string($value);
+						$message = "Value is not string";
 					
 					break;
 					case 'int':
 						$isValid = is_int($value);
+						$message = "Value is not int";
 					break;
 					case 'non_zero':
 						$isValid = is_int($value) ? $value != 0 : $value != "0";
+						$message = "Value is zero!";
 					break;
 					
 				}
 				
-				$responseArray[$field][$code] = $isValid;
+				if(!$isValid){
+					//$invalidArray[$field][$code] = $message;
+					$invalidArray[$field] = $message;
+				}
+				
 			
 			}
 			
 			
 		}
 		
-		Response::PrintAndFinish($responseArray);
+		return $invalidArray;
 				
 		
 	}
