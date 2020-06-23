@@ -1,6 +1,7 @@
 <?php
 
 include_once("CrudController.php");
+include_once("Response.php");
 
 class UserController extends CrudController{
 
@@ -17,7 +18,16 @@ class UserController extends CrudController{
 	public function Create($data){
 		$filteredArray = $this->Filter($data, $this->create_fields);
 		
-		echo json_encode($filteredArray);
+		if(!$filteredArray['success']){
+			
+			$res = Response::CreateErrorTemplate(null);
+			
+			echo json_encode($res);
+			return;
+		}
+		
+		
+		
 	}
 	
 	public function Read($data){
