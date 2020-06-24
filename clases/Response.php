@@ -24,21 +24,30 @@ class Response{
 		return $res;
 	}
 	
-	public static function PrintAndFinish($response, $headers = array('Content-type: application/json'), $responseCode = 200){
+	public static function RespondJSON($response, $responseCode = 200){
 		
-		if($headers != null){
-			foreach($headers as $header){
-				header($header);
-			}
-		}
+		//if($headers != null){
+		//	foreach($headers as $header){
+		//		header('Content-type: application/json');
+		//	}
+		//}
 		
-
+		header('Content-type: application/json');
 		http_response_code($responseCode);
 		
 		echo json_encode($response);
 		die();
 	}
-	
+
+	public static function RespondJSON($success, $data, $message, $code = 200){
+		$response = new Response($success, $message, "", $data);
+		header('Content-type: application/json');
+		http_response_code($responseCode);
+		
+		echo json_encode($response);
+		die();
+	}
+
 }
 
 ?>

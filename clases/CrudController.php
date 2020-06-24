@@ -15,7 +15,7 @@ class CrudController{
 		
 	}
 	
-	public function Read($data){
+	public function Read($primary_value){
 		
 	}
 	
