@@ -2,7 +2,7 @@
 
 class DB{
 
-	var $bd="panama";
+	var $bd="phpcrud";
 	var $host="localhost";
 	var $user="root";
 	var $password ="";

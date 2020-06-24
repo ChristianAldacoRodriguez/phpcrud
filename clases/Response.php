@@ -39,7 +39,7 @@ class Response{
 		die();
 	}
 
-	public static function RespondJSON($success, $data, $message, $code = 200){
+	public static function Respond($success, $data, $message, $code = 200){
 		$response = new Response($success, $message, "", $data);
 		header('Content-type: application/json');
 		http_response_code($responseCode);
