@@ -4,6 +4,10 @@
 include_once("clases/UserController.php");
 
 $crud = new UserController();
-$crud->Create($_GET);
+/*$crud->ReadList(array(
+	"name"=>"juos"
+));*/
+
+$crud->Update($_GET);
 
 ?>

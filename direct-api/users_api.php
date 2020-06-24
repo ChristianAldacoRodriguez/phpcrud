@@ -14,19 +14,23 @@ switch ($method) {
 		$password = isset($_REQUEST['password']) ? $_REQUEST['password'] : '';
 		$name = isset($_REQUEST['name']) ? $_REQUEST['name'] : '';
 
-		if(!empty($email) && !empty($password) && empty($name)){
+
+		if(!empty($email) && !empty($password) && !empty($name)){
 			$data = array('name' => $name, 'email'=>$email, 'password'=>md5($password));
 			$id = CRUD::InsertRow('users', $data);
 
 			$data['id_user'] = $id;
-			Response::RespondJSON(true, 'Success', $data, 201);	
+
+			Response::Respond(true, 'Success', $data, 201);	
+		}else{
+			Response::Respond(false, "Missing parameter", null, 500);	
 		}
 
 		
 		break;
 	
 	default:
-		Response::RespondJSON(false, "Method not found", null, 500);
+		Response::Respond(false, "Method not found", null, 500);
 		break;
 }
 

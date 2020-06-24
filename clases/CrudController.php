@@ -37,9 +37,9 @@ class CrudController{
 			
 			if(!array_key_exists($field, $post)){
 				$response['success'] = false;
-				$response['data'] = null;
-				$response['message'] = "$field not found!";
-				break;
+				//$response['data'] = null;
+				$response['message'] .= "Missing $field, ";
+				//break;
 			}else{
 				$response['data'][$field] = $post[$field];
 			}
@@ -60,7 +60,12 @@ class CrudController{
 		
 		$invalidArray = array();
 		
-		foreach($post as $field => $value){			
+		foreach($post as $field => $value){
+
+			/*if(strpos($validationArray[$field], "required") === false){
+				continue;
+			}*/
+
 			$validationFields = explode('|',$validationArray[$field]);
 			
 			

@@ -42,7 +42,7 @@ class Response{
 	public static function Respond($success, $data, $message, $code = 200){
 		$response = new Response($success, $message, "", $data);
 		header('Content-type: application/json');
-		http_response_code($responseCode);
+		http_response_code($code);
 		
 		echo json_encode($response);
 		die();

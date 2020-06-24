@@ -24,7 +24,7 @@ class CRUD{
 	}
 
 	//Update a row of selected table with only one where clausule
-	public static function UpdateRow($tablename, $arrayvalues,$whereField, $idWhere){
+	public static function UpdateRow($tablename, $arrayvalues, $whereField, $idWhere){
 		$db = new DB();
 		$campos = array();
 		foreach ($arrayvalues as $key => $value) {
