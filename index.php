@@ -8,6 +8,7 @@ $crud = new UserController();
 	"name"=>"juos"
 ));*/
 
-$crud->Update($_GET);
+//$crud->Update($_GET);
+$crud->Delete($_GET);
 
 ?>

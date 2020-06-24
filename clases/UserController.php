@@ -88,11 +88,18 @@ class UserController extends CrudController{
 		
 		$res = CRUD::UpdateRow($this->table_name, $filteredArray['data'], $this->primary_key_name, $this->primary_key_value);
 		Response::Respond(true, $res, 'Update success', 200);
-
 	}
 	
 	public function Delete($data){
+		$this->primary_key_value = isset($data[$this->primary_key_name]) ? $data[$this->primary_key_name]: 0;
+
+		if($this->primary_key_value <= 0){
+			Response::Respond(false, null, 'No id!', 500);
+		}
 		
+		$res = CRUD::DeleteRow($this->table_name, $this->primary_key_name, $this->primary_key_value);
+		Response::Respond(true, $res, 'Delete success', 500);
+	
 	}
 	
 	
