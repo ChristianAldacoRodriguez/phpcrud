@@ -1,5 +1,5 @@
 <?php
-include_once('DB.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/phpcrud-master/clases/DB.php');
 
 class CRUD{
 

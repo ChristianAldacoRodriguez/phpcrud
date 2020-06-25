@@ -1,8 +1,8 @@
 <?php
 
-include_once("CrudController.php");
-include_once("Response.php");
-include_once("CRUD.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/phpcrud-master/clases/CrudController.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/phpcrud-master/clases/Response.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/phpcrud-master/clases/CRUD.php");
 
 class UserController extends CrudController{
 

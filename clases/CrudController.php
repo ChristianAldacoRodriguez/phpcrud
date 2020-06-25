@@ -1,5 +1,8 @@
 <?php
 
+include_once($_SERVER['DOCUMENT_ROOT']."/phpcrud-master/clases/Response.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/phpcrud-master/clases/CRUD.php");
+
 class CrudController{
 	
 	protected $primary_key_name = "id"; 
@@ -175,7 +178,7 @@ class CrudController{
 						$isValid = is_int($value) ? $value != 0 : $value != "0";
 						$message = "Value is zero!";
 					break;
-					
+
 				}
 				
 				if(!$isValid){
