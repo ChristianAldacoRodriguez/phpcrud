@@ -20,7 +20,7 @@ class CrudController{
 		
 		$invalidArray = $this->Validate($filteredArray['data'], $this->create_fields);
 		if( count($invalidArray) > 0){
-			Response::Respond(false, null, 'Some data was invalid!', 500);
+			Response::Respond(false, $invalidArray, 'Some data was invalid!', 500);
 		}
 		
 		$primary_key_value = CRUD::InsertRow($this->table_name, $filteredArray['data']);
@@ -29,8 +29,18 @@ class CrudController{
 		Response::Respond(true, $obj, 'Insert success', 201);
 	}
 	
-	public function Read($primary_value){
+	public function Read($data){
 		//Get one based on primary key
+		$filteredArray = $this->Filter($data, array( $this->primary_key_name => 'required'));
+		
+		$invalidArray = $this->Validate($filteredArray['data'], array( $this->primary_key_name => 'required'));
+		if( count($invalidArray) > 0){
+			Response::Respond(false, null, 'Primary key data was invalid!', 500);
+		}
+
+
+		$primary_value = $filteredArray['data'][$this->primary_key_name];
+
 
 		$dbres = CRUD::GetRow($this->table_name, $this->primary_key_name, $primary_value);
 		if($dbres != null){
@@ -137,7 +147,6 @@ class CrudController{
 			}*/
 
 			$validationFields = explode('|',$validationArray[$field]);
-			
 			
 			foreach($validationFields as $code){
 			

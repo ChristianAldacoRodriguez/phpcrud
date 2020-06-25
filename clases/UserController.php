@@ -11,7 +11,7 @@ class UserController extends CrudController{
 	
 	protected $table_name = "users";
 	protected $table_fields = array("email", "password", "name");
-	protected $create_fields = array("email" => "non_empty|str|required", "password" => "non_empty|str|required", "name" => "non_empty|str|required");
+	protected $create_fields = array("email" => "non_empty|str", "password" => "non_empty|str", "name" => "non_empty|str");
 	protected $update_fields = array("email" => "non_empty|str", "password" => "non_empty|str", "name" => "non_empty|str");
 	protected $delete_fields = array("email" => "non_empty|str", "password" => "non_empty|str", "name" => "non_empty|str");
 	protected $read_fields = array("email" => "non_empty|str", "password" => "non_empty|str", "name" => "non_empty|str");

@@ -1,14 +1,10 @@
 <?php
 
+include_once('./clases/ApiController.php');
+include_once('./clases/UserController.php');
 
-include_once("clases/UserController.php");
+$api = new ApiController();
+$api->Listen($_REQUEST, new UserController());
 
-$crud = new UserController();
-$crud->ReadList(array(
-	"password"=>"1234"
-));
-
-//$crud->Update($_GET);
-//$crud->Delete($_GET);
 
 ?>
